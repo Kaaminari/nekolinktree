@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+ <canvas id="snow"></canvas>
   <div class="container">
     <img src="https://cdn.discordapp.com/avatars/1275575010366587003/6ac2b3a02964d14262274b529a71db85.png?size=2048" alt="Foto de Perfil" class="profile-pic" />
     <h1>Neko Bypass</h1>
@@ -29,5 +30,61 @@
       <a href="https://www.tiktok.com/@neko.10101" class="link-button" target="_blank">TikTok</a>
     </div>
   </div>
+ <script>
+    const canvas = document.getElementById("snow");
+    const ctx = canvas.getContext("2d");
+
+    let width, height;
+    let snowflakes = [];
+
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+
+    function createSnowflakes() {
+      const x = Math.random() * width;
+      const y = Math.random() * height;
+      const radius = Math.random() * 4 + 1;
+      const speed = Math.random() * 1 + 0.5;
+      snowflakes.push({ x, y, radius, speed });
+    }
+
+    function drawSnowflakes() {
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = "#FFF";
+      ctx.beginPath();
+      for (let flake of snowflakes) {
+        ctx.moveTo(flake.x, flake.y);
+        ctx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
+      }
+      ctx.fill();
+      moveSnowflakes();
+    }
+
+    function moveSnowflakes() {
+      for (let flake of snowflakes) {
+        flake.y += flake.speed;
+        if (flake.y > height) {
+          flake.y = 0;
+          flake.x = Math.random() * width;
+        }
+      }
+    }
+
+    function update() {
+      drawSnowflakes();
+      requestAnimationFrame(update);
+    }
+
+    window.addEventListener("resize", resize);
+
+    resize();
+    for (let i = 0; i < 150; i++) {
+      createSnowflakes();
+    }
+
+    update();
+  </script>
 </body>
 </html>
