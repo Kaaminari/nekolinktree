@@ -19,7 +19,41 @@
   <title>Meu Linktree</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Garante que o canvas fique atrás de tudo */
+    body {
+      margin: 0;
+      background-color: #000;
+      color: white;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+.wrapper {
+      position: relative;
+      z-index: 1;
+    }
+
+.blur-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 300px; /* Desfoque só até um pouco abaixo da imagem */
+      backdrop-filter: blur(10px);
+      background-color: rgba(0, 0, 0, 0.05); /* Apenas um escurecimento sutil */
+      z-index: 2;
+    }
+
+.blur-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 300px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0));
+  z-index: 3;
+  pointer-events: none;
+}
+    
     #snow {
       position: fixed;
       top: 0;
@@ -29,9 +63,43 @@
       pointer-events: none;
       z-index: 0;
     }
-    .container {
+    
+  .container {
       position: relative;
-      z-index: 1;
+      z-index: 3;
+      text-align: center;
+      padding-top: 60px;
+    }
+
+  .profile-pic {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border: 3px solid white;
+      margin-bottom: 10px;
+    }
+
+    .link-button {
+      display: block;
+      margin: 0.5rem auto;
+      padding: 0.7rem 1.2rem;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: white;
+      text-decoration: none;
+      border: 1px solid white;
+      border-radius: 8px;
+      width: 200px;
+      transition: 0.3s;
+    }
+
+    .link-button:hover {
+      background-color: #555;
+    }
+
+    .emoji-gif {
+      width: 20px;
+      height: 20px;
+      vertical-align: middle;
     }
   </style>
 </head>
