@@ -20,8 +20,53 @@ body {
   margin-bottom: 20px;
 }
 
+.wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.blur-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 300px;
+  backdrop-filter: blur(10px);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Camada extra só com o degradê visual */
+.blur-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 300px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0));
+  z-index: 3;
+  pointer-events: none;
+}
 h1 {
   margin-bottom: 30px;
+}
+
+h1 {
+  margin-bottom: 30px;
+}
+
+.emoji-gif {
+  height: 1em;
+  vertical-align: middle;
+}
+
+h1 .emoji-gif,
+a .emoji-gif,
+h2 .emoji-gif {
+  height: 1.5em; /* ou maior se quiser */
 }
 
 .buttons .btn {
